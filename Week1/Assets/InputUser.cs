@@ -7,50 +7,34 @@ public class InputUser : MonoBehaviour
 {
     public string userInputText;
     public int NumberStatusCase  ;
-    public string[] DataSearch =   { "The Last Of Us Part II", "Ghost of Tsushima", "Final Fantasy VII Remake", "No Man's Sky", "Hades" };
+    public string[] DataSearch =   {"The Last Of Us Part II", "Ghost of Tsushima", "Final Fantasy VII Remake", "No Man's Sky", "Hades"};
     
     public GameObject inputField;
     public GameObject textDisplayUser;
     public GameObject textStatus;
-   
 
-   public void StorInput()
-    {   userInputText = inputField.GetComponent<Text>().text;
-        textDisplayUser.GetComponent<Text>().text = " Mygame \n\n\n " +  DataSearch[0] + " \n " + DataSearch[1] + " \n " + DataSearch[2 ]+" \n " + DataSearch[3] + " \n " + DataSearch[4];
-    }
-   public  void CheckText()
+    public void CheckText()
     {
-        if (userInputText == DataSearch[0])
+        for (int i = 0; i < DataSearch.Length; i++)
         {
-            NumberStatusCase = 0;
-        }
+            if (userInputText == DataSearch[i])
+            {
+                NumberStatusCase = 0;
+                break;
+            }
 
-        else if (userInputText == DataSearch[1])
-        {
-            NumberStatusCase = 0;
+            else
+            {
+                NumberStatusCase = 1;
+            }
         }
-
-        else if (userInputText == DataSearch[2])
-        {
-            NumberStatusCase = 0;
-        }
-
-        else if (userInputText == DataSearch[3])
-        {
-            NumberStatusCase = 0;
-        }
-
-        else if (userInputText == DataSearch[4])
-        {
-            NumberStatusCase = 0;
-        }
-
-        else
-        {
-            NumberStatusCase = 1;
-        }
-
     }
+
+    public void StorInput()
+    {   userInputText = inputField.GetComponent<Text>().text;
+        textDisplayUser.GetComponent<Text>().text = " Mygame \n\n\n " + DataSearch[0] + "\n" + DataSearch[1] + "\n" + DataSearch[2] + "\n" + DataSearch[3] + "\n" + DataSearch[4] + "\n";
+    }
+  
 
     public void textUpdate()
     {  if ( NumberStatusCase == 0)
@@ -67,11 +51,9 @@ public class InputUser : MonoBehaviour
     }
 
     public void runProgramGameS()
-    {
-        StorInput();
+    {   StorInput();
         CheckText();
         textUpdate();
-
     }
 
     public void Start()
